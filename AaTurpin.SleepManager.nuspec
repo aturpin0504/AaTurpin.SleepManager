@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>AaTurpin.SleepManager</id>
+    <version>1.0.0</version>
+    <title>AaTurpin.SleepManager</title>
+    <authors>aaturpin</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/aturpin0504/AaTurpin.SleepManager</projectUrl>
+    <description>AaTurpin.SleepManager is a .NET NuGet package that provides a simple interface to control the Windows system's sleep behavior. It allows your applications to temporarily prevent the system from entering sleep mode or turning off the display, which is particularly useful for long-running operations, presentations, or media playback scenarios.</description>
+    <releaseNotes>Initial Release.</releaseNotes>
+    <copyright>Copyright 2025</copyright>
+    <tags>windows, sleep, power-management</tags>
+    <readme>README.md</readme>
+  </metadata>
+  <files>
+    <file src="README.md" target="README.md" />
+  </files>
+</package>
