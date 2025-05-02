@@ -10,7 +10,7 @@ namespace AaTurpin.SleepManager
     /// </summary>
     public static class SleepManager
     {
-        private static Logger _logger;
+        private static Logger _logger = Log.Logger;
 
         // Import the necessary Windows API functions
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -35,7 +35,6 @@ namespace AaTurpin.SleepManager
         /// </summary>
         static SleepManager()
         {
-            _logger = Log.Logger;
             _sleepPrevented = false;
             _displayPrevented = false;
         }
