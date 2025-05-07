@@ -6,7 +6,7 @@ A lightweight C# NuGet package for managing Windows system sleep settings.
 
 AaTurpin.SleepManager is a .NET NuGet package that provides a simple interface to control the Windows system's sleep behavior. It allows your applications to temporarily prevent the system from entering sleep mode or turning off the display, which is particularly useful for long-running operations, presentations, or media playback scenarios.
 
-The package includes and depends on RunLog for comprehensive logging functionality.
+The package includes and depends on RunLog 3.3.0 for comprehensive logging functionality.
 
 ## Features
 
@@ -15,6 +15,7 @@ The package includes and depends on RunLog for comprehensive logging functionali
 - Temporarily prevent sleep for a specific duration
 - Check the current sleep prevention status
 - Comprehensive logging integration
+- Optimized, lightweight implementation
 
 ## Requirements
 
@@ -91,6 +92,7 @@ class Program
         Console.WriteLine("Sleep settings restored.");
     }
 }
+```
 
 ### Keep Display On
 
@@ -131,6 +133,13 @@ var customLogger = new LoggerConfiguration()
 
 SleepManager.SetLogger(customLogger);
 ```
+
+## What's New in Version 1.1.0
+
+- Updated RunLog to version 3.3.0 for improved logging capabilities
+- Optimized implementation with improved performance
+- Simplified error handling and logging patterns
+- Enhanced code readability with more consistent formatting
 
 ## How It Works
 
