@@ -14,6 +14,7 @@ namespace AaTurpin.SleepManager
         private static bool _sleepPrevented;
         private static bool _displayPrevented;
         private static readonly object _stateLock = new object();
+        private static bool _exitHandlerRegistered;
 
         // Import the necessary Windows API functions
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
@@ -67,6 +68,10 @@ namespace AaTurpin.SleepManager
                 }
 
                 _logger.Information("System sleep prevented. Keep display on: {0}", keepDisplayOn);
+
+                // Register the exit handler if not already registered
+                RegisterExitHandler();
+
                 return true;
             }
             catch (Exception ex)
@@ -169,6 +174,42 @@ namespace AaTurpin.SleepManager
             lock (_stateLock)
             {
                 return _displayPrevented;
+            }
+        }
+
+        /// <summary>
+        /// Registers an application exit handler to restore sleep settings automatically.
+        /// Only registers once to avoid multiple handlers.
+        /// </summary>
+        private static void RegisterExitHandler()
+        {
+            lock (_stateLock)
+            {
+                if (!_exitHandlerRegistered)
+                {
+                    // Register for process exit event
+                    AppDomain.CurrentDomain.ProcessExit += (sender, e) =>
+                    {
+                        if (_sleepPrevented)
+                        {
+                            _logger.Information("Application exiting, automatically restoring sleep settings");
+                            AllowSleep();
+                        }
+                    };
+
+                    // Also register for unhandled exceptions
+                    AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+                    {
+                        if (_sleepPrevented)
+                        {
+                            _logger.Warning("Unhandled exception occurred, restoring sleep settings");
+                            AllowSleep();
+                        }
+                    };
+
+                    _exitHandlerRegistered = true;
+                    _logger.Debug("Application exit handler registered for sleep management");
+                }
             }
         }
     }

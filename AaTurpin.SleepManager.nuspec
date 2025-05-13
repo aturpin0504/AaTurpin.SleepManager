@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AaTurpin.SleepManager</id>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <title>AaTurpin.SleepManager</title>
     <authors>aaturpin</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -11,14 +11,15 @@
     <projectUrl>https://github.com/aturpin0504/AaTurpin.SleepManager</projectUrl>
     <description>AaTurpin.SleepManager is a .NET NuGet package that provides a simple interface to control the Windows system's sleep behavior. It allows your applications to temporarily prevent the system from entering sleep mode or turning off the display, which is particularly useful for long-running operations, presentations, or media playback scenarios.</description>
     <releaseNotes>
-      Version 1.1.0 - Changes:
-      - Updated RunLog to version 3.3.0 for improved logging capabilities
-      - Removed static constructor for improved performance
-      - Simplified error handling and logging patterns
-      - Optimized PreventSleepTemporarilyAsync method with clearer state restoration logic
-      - Reduced redundant logging statements while maintaining important operational logs
-      - Enhanced code readability with more consistent formatting
-      - Maintained all core functionality while reducing code size by ~15%
+      Version 1.2.0 - Changes:
+      - Added automatic sleep restoration on application exit to prevent system from remaining in prevented state
+      - Added automatic sleep restoration on unhandled exceptions for improved reliability
+      - Implemented exit handler registration with duplicate prevention to avoid multiple handlers
+      - Enhanced PreventSleep() method to automatically register cleanup handlers when sleep is prevented
+      - Added debug logging for exit handler registration to improve troubleshooting
+      - Improved resource management with automatic cleanup during abnormal application termination
+      - Maintained backward compatibility with all existing public APIs
+      - Enhanced robustness of sleep state management throughout application lifecycle
     </releaseNotes>
     <copyright>Copyright 2025</copyright>
     <tags>windows, sleep, power-management</tags>
